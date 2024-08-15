@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
 import logo from "../../../public/images/logo.png"
-import Search from 'antd/es/input/Search';
 import { Button, ConfigProvider, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 const TopNav = () => {
     return (
-        <div className='flex   space-y-4 px-2 items-center justify-around gap-6 container mx-auto my-6 '>
-            <div className='lg:pr-8 w-fit'>
-                <Image height={200} width={200} src={logo} />
+        <div className='flex   space-y-4 px-2 items-center justify-around gap-6 container mx-auto my-4 '>
+            <div className=' w-fit'>
+               <Link href={'/'}> <Image height={200} width={200} src={logo} /></Link>
             </div>
             <div className='w-full'>
                 <ConfigProvider
@@ -30,7 +30,7 @@ const TopNav = () => {
                    }
                 >
 
-                <Input className='lg:flex md:flex hidden'  prefix={<SearchOutlined/>} size='large' placeholder='search' />
+                <Input className='lg:flex md:flex hidden'  prefix={<SearchOutlined/>} size='large' placeholder='Search Product' />
                 </ConfigProvider>
             </div>
             <div className='flex items-center justify-center gap-4'>
@@ -49,9 +49,9 @@ const TopNav = () => {
                   }
                }>
 
-            <Button size='large'  className='px-8 py-4 text-lg rounded-sm' style={{background:'#F4F5F7',color:'#555656'}}  type="default">Sign Up</Button>
+            <Button size='large'  className='px-8 py-6 text-lg rounded-sm border-none' style={{background:'#F4F5F7',color:'#555656'}}  type="default">Sign Up</Button>
                 </ConfigProvider>
-            <Button size='large' style={{background:'#7CC84E',color:'white',}} className='px-8 py-4 text-lg rounded-sm '  type="primary">Sign In</Button>
+            <Button size='large' style={{background:'#7CC84E',color:'white',}} className='px-8 py-6 text-lg rounded-sm '  type="primary">Sign In</Button>
             </div>
         </div>
     );

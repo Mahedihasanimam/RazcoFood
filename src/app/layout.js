@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const popins = Poppins({ weight:['400','500','600','700'],subsets: ["latin"] });
 
 export const metadata = {
   title: "Razco Food",
@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={popins.className}>
         <Navbar/>
         {children}
         <Footer/>
