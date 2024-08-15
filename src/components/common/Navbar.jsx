@@ -30,7 +30,7 @@ const Navbar = () => {
       <TopNav />
       <Layout className="bg-[#EFEEF6] px-0">
         <Header
-          className="container mx-auto bg-[#EFEEF6] flex items-center justify-between px-0"
+          className="container mx-auto bg-[#EFEEF6] flex  flex-wrap items-center justify-between px-0"
          
         >
           <div>
@@ -63,7 +63,7 @@ const Navbar = () => {
             }}
           />
 
-          <div className="flex items-center justify-center gap-4">
+          <div className="lg:flex md:flex hidden items-center justify-center gap-4">
             <ShoppingCartOutlined className="text-xl cursor-pointer"/>
          
             <HeartOutlined  className="text-xl cursor-pointer"/>
