@@ -4,7 +4,7 @@ import image1 from "../../../public/images/chocklet1.png"
 import { ShoppingCartOutlined } from '@ant-design/icons';
 const SingleCard = ({product}) => {
     const {productImage,productName,price}=product
-    console.log(productImage[0]);
+
     return (
         <div className='bg-[#F4F5F7] p-4 rounded-md  space-y-4'>
             <div className='bg-[#EFEEF6] p-4 rounded-md relative h-72'>

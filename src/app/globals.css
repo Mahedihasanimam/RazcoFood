@@ -14,6 +14,30 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+/* styles.css */
+/* styles.css */
+.swiper-container {
+  position: relative;
+}
+
+.swiper-container {
+  position: relative; /* Ensure this is set for correct positioning */
+}
+.swiper-button-next, .swiper-button-prev {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  color: #B7B8B9; 
+  background-color: #F4F5F7;
+  padding: 40px; /* Adjust padding as needed */
+  border-radius: 10px;
+  z-index: 10; /* Ensure the button is on top of the slider */
+}
+
+.swiper-button-next {
+  right: 10px; /* Adjust as needed */
+}
+
+
 
 @layer utilities {
   .text-balance {

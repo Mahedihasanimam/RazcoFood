@@ -1,6 +1,8 @@
 import AppDownload from "@/components/home/AppDownload";
 import Carosel from "@/components/home/Carosel";
 import AllProduct from "@/components/product/AllProduct";
+import Arival from "@/components/product/Arival";
+import BestDeals from "@/components/product/BestDeals";
 import Image from "next/image";
 
 export default function Home() {
@@ -8,6 +10,8 @@ export default function Home() {
     <main>
      <Carosel/>
      <AllProduct/>
+     <BestDeals/>
+     <Arival/>
      <AppDownload/>
     </main>
   );

@@ -18,8 +18,8 @@ const Carosel = () => {
           </div>
           <div className="absolute z-40 top-1/3 ml-[10%] text-white space-y-4">
             <p className="text-2xl tracking-widest">Best Deal on icy delights</p>
-            <h3 className="text-8xl font-bold">BEAT</h3>
-            <h1 className="text-8xl font-bold"> THE HEAT</h1>
+            <h3 className="lg:text-8xl md:text-6xl text-4xl font-bold">BEAT</h3>
+            <h1 className="lg:text-8xl md:text-6xl text-4xl font-bold"> THE HEAT</h1>
             <p className="text-2xl">
               UP to <span className="font-bold">50% OFF</span>
             </p>
@@ -35,8 +35,8 @@ const Carosel = () => {
           </div>
           <div className="absolute z-40 top-1/3 ml-[10%] text-white space-y-4">
             <p className="text-2xl tracking-widest">Best Deal on icy delights</p>
-            <h3 className="text-8xl font-bold">BEAT</h3>
-            <h1 className="text-8xl font-bold"> THE HEAT</h1>
+            <h3 className="lg:text-8xl md:text-6xl text-4xl font-bold">BEAT</h3>
+            <h1 className="lg:text-8xl md:text-6xl text-4xl font-bold"> THE HEAT</h1>
             <p className="text-2xl">
               UP to <span className="font-bold">50% OFF</span>
             </p>
@@ -52,8 +52,8 @@ const Carosel = () => {
           </div>
           <div className="absolute z-40 top-1/3 ml-[10%] text-white space-y-4">
             <p className="text-2xl tracking-widest">Best Deal on icy delights</p>
-            <h3 className="text-8xl font-bold">BEAT</h3>
-            <h1 className="text-8xl font-bold"> THE HEAT</h1>
+            <h3 className="lg:text-8xl md:text-6xl text-4xl font-bold">BEAT</h3>
+            <h1 className="lg:text-8xl md:text-6xl text-4xl font-bold"> THE HEAT</h1>
             <p className="text-2xl">
               UP to <span className="font-bold">50% OFF</span>
             </p>

@@ -12,27 +12,26 @@ import 'swiper/css/navigation';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import TopCatCard from './TopCatCard';
-import Link from 'next/link';
-import { RightSquareFilled } from '@ant-design/icons';
+
 import CommonHeader from '../common/CommonHeader';
 
-const AllProduct = () => {
+const BestDeals = () => {
     const { data:products, error, isLoading } = useGetProductByNameQuery(undefined)
     console.log(products?.data);
     if(isLoading){
         <h2>Loading...</h2>
     }
     return (
-        <div className='container mx-auto text-[#666666] my-20'>
-            <CommonHeader title1={'Shop From'} title2={'Top Categories'} mylink={'#'}/>
+        <div className='container mx-auto text-[#666666] my-12'>
+            <CommonHeader title1={'Shop From'} title2={'Best Deals'} mylink={'#'}/>
+           
             <div className=' swiper-container'>
             <Swiper
         
        
         centeredSlides={true}
-        slidesPerView={6}
-      
+        slidesPerView={4}
+        spaceBetween={30}
         pagination={{
           clickable: true,
         }}
@@ -42,7 +41,7 @@ const AllProduct = () => {
         breakpoints={{
             // when window width is >= 320px
             320: {
-                slidesPerView: 2,
+                slidesPerView: 1,
             },
             // when window width is >= 640px
             640: {
@@ -70,7 +69,7 @@ const AllProduct = () => {
        
            {
             products?.data.map(product =><SwiperSlide>
-                <TopCatCard key={product._id}  product={product} />
+                <SingleCard key={product._id}  product={product} />
             </SwiperSlide> )
            }
         
@@ -82,4 +81,4 @@ const AllProduct = () => {
     );
 };
 
-export default AllProduct;
+export default BestDeals;
