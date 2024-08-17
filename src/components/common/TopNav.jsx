@@ -49,9 +49,13 @@ const TopNav = () => {
                   }
                }>
 
+            <Link href={'/signup'}>
             <Button size='large'  className='px-8 py-6 text-lg rounded-sm border-none' style={{background:'#F4F5F7',color:'#555656'}}  type="default">Sign Up</Button>
+            </Link>
                 </ConfigProvider>
-            <Button size='large' style={{background:'#7CC84E',color:'white',}} className='px-8 py-6 text-lg rounded-sm '  type="primary">Sign In</Button>
+           <Link href={'/login'}>
+           <Button size='large' style={{background:'#7CC84E',color:'white',}} className='px-8 py-6 text-lg rounded-sm '  type="primary">Sign In</Button>
+           </Link>
             </div>
         </div>
     );

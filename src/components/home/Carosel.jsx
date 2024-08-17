@@ -9,7 +9,7 @@ import banner3 from "../../../public/images/banner3.png";
 
 const Carosel = () => {
   return (
-    <Carousel className="container mx-auto my-4" autoplay>
+    <Carousel className="container mx-auto  lg:mt-32 mt-24" autoplay>
       <div className="bg-gradient-to-r from-[#F2BD1F] to-[#EA2F59] relative ">
         <div className="">
           <div className="">
