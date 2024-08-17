@@ -63,8 +63,8 @@ const Login = () => {
           </Form.Item>
 
           <div className='flex items-center justify-between'>
-          <Form.Item name="remember"  valuePropName="checked">
-            <Checkbox className="text-[#6A6D7C]  text-lg">Remember me</Checkbox>
+          <Form.Item name="remember" >
+            <Checkbox name="remember" className="text-[#6A6D7C]  text-lg">Remember me</Checkbox>
           </Form.Item>
           <Link className='text-[#6A6D7C] text-md mb-6' href={'/forget'}>
           Forget Password?

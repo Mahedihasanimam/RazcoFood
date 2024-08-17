@@ -44,7 +44,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input  className='bg-[#F1F4F9] rounded-md p-2' placeholder="your username" style={{ width: '100%' }} />
+            <Input  className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="your username" style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item
             label={<span className='text-[#6A6D7C] font-bold ' >Email Address</span>}
@@ -56,7 +56,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input  className='bg-[#F1F4F9] rounded-md p-2' placeholder="esteban_schiller@gmail.com" style={{ width: '100%' }} />
+            <Input  className='bg-[#F1F4F9] rounded-md p-3  border-none' placeholder="esteban_schiller@gmail.com" style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item
             label={<span className='text-[#6A6D7C] font-bold ' >Contact no</span>}
@@ -68,7 +68,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input  className='bg-[#F1F4F9] rounded-md p-2' placeholder="+88018" style={{ width: '100%' }} />
+            <Input  className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="+88018" style={{ width: '100%' }} />
           </Form.Item>
 
           <Form.Item
@@ -83,7 +83,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input.Password  className='bg-[#F1F4F9] rounded-md p-2'  placeholder="********" style={{ width: '100%' }} />
+            <Input.Password  className='bg-[#F1F4F9] rounded-md p-3 border-none'  placeholder="********" style={{ width: '100%' }} />
           </Form.Item>
 
           <div className=''>
