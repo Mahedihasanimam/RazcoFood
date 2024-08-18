@@ -1,3 +1,4 @@
+import Acordion from "@/components/home/Acordion";
 import AppDownload from "@/components/home/AppDownload";
 import Carosel from "@/components/home/Carosel";
 import AllProduct from "@/components/product/AllProduct";
@@ -13,6 +14,7 @@ export default function Home() {
      <BestDeals/>
      <Arival/>
      <AppDownload/>
+     <Acordion/>
     </main>
   );
 }
