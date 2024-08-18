@@ -1,19 +1,14 @@
 'use client'
 import { useGetProductByNameQuery } from '@/service/postApi';
 import React from 'react';
-import SingleCard from './SingleCard';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// import './styles.css';
-
-// import required modules
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TopCatCard from './TopCatCard';
-import CommonHeader from '../common/CommonHeader';
 
 const AllProduct = () => {
     const { data:products, error, isLoading } = useGetProductByNameQuery(undefined)
@@ -23,7 +18,7 @@ const AllProduct = () => {
     }
     return (
         <div className='container mx-auto text-[#666666] my-20'>
-            <CommonHeader title1={'Shop From'} title2={'Top Categories'} mylink={'#'}/>
+          
             <div className=' swiper-container'>
             <Swiper
         

@@ -1,5 +1,7 @@
 "use client";
 
+import CommonHeader from "@/components/common/CommonHeader";
+import AllProduct from "@/components/product/AllProduct";
 import { useGetProductByIdQuery } from "@/service/postApi";
 import {
   HeartOutlined,
@@ -26,7 +28,7 @@ const ProductDetails = ({ params }) => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error occurred</div>;
   const { productImage, productName, price, _id, description } = product?.data;
-  console.log(product);
+  console.log(productImage);
   return (
     <div className="my-20 container mx-auto">
       <Breadcrumb
@@ -150,6 +152,11 @@ const ProductDetails = ({ params }) => {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="my-12">
+        <CommonHeader title1={''} title2={'More Fruits'} mylink={'/shop'}/>
+        <AllProduct/>
       </div>
     </div>
   );

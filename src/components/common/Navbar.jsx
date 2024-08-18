@@ -25,7 +25,7 @@ const items = [
   {
     label: (
       <label className="text-[#555656]">
-        <Link href={"/"}>Shop</Link>
+        <Link href={"/shop"}>Shop</Link>
       </label>
     ),
     key: "shop",

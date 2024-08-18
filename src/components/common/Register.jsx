@@ -3,13 +3,37 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input, Typography, message } from 'antd';
 import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+
 
 const Register = () => {
   const [form] = Form.useForm();
-  
-  const onFinish = (values) => {
-    console.log(values);
-    message.success('Success');
+  const router=useRouter()
+  const onFinish = async(values) => {
+    // console.log(values);
+    try {
+      const response =await fetch('http://192.168.10.185:5000/api/v1/user/create-user',{
+        method:'POST',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(values)
+      })
+      console.log(response);
+      const data = await response.json();
+      if (response.ok) {
+        router.push(`/verify?email=${encodeURIComponent(values.email)}`)
+        message.success('Registration successful!');
+        form.resetFields();
+      } else {
+        message.error(`Registration failed: ${data.message}`);
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+      message.error('An unexpected error occurred.');
+    }
     form.resetFields(); 
   };
 
@@ -36,7 +60,7 @@ const Register = () => {
         >
           <Form.Item
             label={<span className='text-[#6A6D7C] font-bold ' >Username</span>}
-            name="username"
+            name="name"
             rules={[
               {
                 required: true,
@@ -60,7 +84,7 @@ const Register = () => {
           </Form.Item>
           <Form.Item
             label={<span className='text-[#6A6D7C] font-bold ' >Contact no</span>}
-            name="contact"
+            name="phone"
             rules={[
               {
                 required: true,
@@ -68,7 +92,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input  className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="+88018" style={{ width: '100%' }} />
+            <Input   className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="+88018" style={{ width: '100%' }} />
           </Form.Item>
 
           <Form.Item
