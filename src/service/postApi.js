@@ -7,7 +7,14 @@ export const postApi = createApi({
     getProductByName: builder.query({
       query: () => `/product`,
     }),
+    getProductById: builder.query({
+      query: (id) => `/product/${id}`, // Dynamic endpoint with id
+    }),
   }),
 });
 
-export const { useGetProductByNameQuery } = postApi;
+// Export hooks for the queries
+export const { 
+  useGetProductByNameQuery, 
+  useGetProductByIdQuery 
+} = postApi;

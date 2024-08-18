@@ -17,7 +17,6 @@ import CommonHeader from '../common/CommonHeader';
 
 const BestDeals = () => {
     const { data:products, error, isLoading } = useGetProductByNameQuery(undefined)
-    console.log(products?.data);
     if(isLoading){
         <h2>Loading...</h2>
     }

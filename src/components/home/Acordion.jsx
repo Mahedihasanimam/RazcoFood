@@ -1,12 +1,15 @@
-'use client'
+'use client';
+import { Collapse } from 'antd';
 import { DownCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+
+const { Panel } = Collapse;
 
 const AccordionItem = ({ title, content, isOpen, onClick }) => (
   <div className="border rounded-md ">
     <div
       onClick={onClick}
-      className="flex justify-between items-center cursor-pointer p-4 text-xl  bg-base-200"
+      className="flex justify-between items-center cursor-pointer p-4 text-xl text-[#555555]"
     >
       {title}
       <span
@@ -14,7 +17,7 @@ const AccordionItem = ({ title, content, isOpen, onClick }) => (
           isOpen ? 'rotate-90' : 'rotate-0'
         }`}
       >
-        <DownCircleOutlined style={{color:'green',fontSize:'25px'}}/>
+        <DownCircleOutlined style={{ color: '#63A03E', fontSize: '25px' }} />
       </span>
     </div>
     {isOpen && (
@@ -42,7 +45,7 @@ const Accordion = () => {
 
   return (
     <div className="space-y-4 container mx-auto my-12">
-        <h1 className='text-5xl font-bold text-[#555656] text-center my-12'>Frequently Asked Questions</h1>
+      <h1 className='text-5xl font-bold text-[#555656] text-center my-12'>Frequently Asked Questions</h1>
       {items.map((item, index) => (
         <AccordionItem
           key={index}

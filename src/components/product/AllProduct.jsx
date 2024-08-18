@@ -13,13 +13,11 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TopCatCard from './TopCatCard';
-import Link from 'next/link';
-import { RightSquareFilled } from '@ant-design/icons';
 import CommonHeader from '../common/CommonHeader';
 
 const AllProduct = () => {
     const { data:products, error, isLoading } = useGetProductByNameQuery(undefined)
-    console.log(products?.data);
+
     if(isLoading){
         <h2>Loading...</h2>
     }
