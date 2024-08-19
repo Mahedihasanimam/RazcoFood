@@ -12,11 +12,7 @@ const Register = () => {
 
   const onFinish = async (values) => {
     try {
-      
-      // Make POST request with the values directly
       const response = await axios.post('http://192.168.10.185:5000/api/v1/user/create-user', values);
-      
-      // Handle response
       if (response.status === 200) {
         router.push(`/verify?email=${encodeURIComponent(values.email)}`);
         message.success('Registration successful!');
@@ -26,15 +22,12 @@ const Register = () => {
       }
     } catch (error) {
       if (error.response) {
-        // Handle known error
         console.error('Error response:', error.response.data);
         message.error(`Registration failed: ${error.response.data.message}`);
       } else if (error.request) {
-        // Handle no response error
         console.error('Error request:', error.request);
         message.error('No response received from the server.');
       } else {
-        // Handle unexpected errors
         console.error('Error message:', error.message);
         message.error('An unexpected error occurred.');
       }
