@@ -38,7 +38,7 @@ const Verify = () => {
     console.log(response);
     const data = await response.json();
     if (response.ok) {
-      router.push("/");
+      router.push("/login");
       message.success("Verification successful!");
       form.resetFields();
     } else {

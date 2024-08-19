@@ -5,7 +5,6 @@ import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 const SingleCard = ({product}) => {
     const {productImage,productName,price,_id}=product
-    console.log(product);
 
     return (
         <Link href={`/productDetails/${_id}`}>

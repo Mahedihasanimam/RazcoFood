@@ -1,5 +1,6 @@
 "use client";
 
+import PrivateRoute from "@/app/Private/PrivateRoute";
 import CommonHeader from "@/components/common/CommonHeader";
 import AllProduct from "@/components/product/AllProduct";
 import { useGetProductByIdQuery } from "@/service/postApi";
@@ -8,7 +9,6 @@ import {
   HomeOutlined,
   MinusOutlined,
   PlusOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Button, ConfigProvider, InputNumber } from "antd";
 import Image from "next/image";
@@ -30,7 +30,8 @@ const ProductDetails = ({ params }) => {
   const { productImage, productName, price, _id, description } = product?.data;
   console.log(productImage);
   return (
-    <div className="my-20 container mx-auto">
+   <PrivateRoute>
+     <div className="my-20 container mx-auto">
       <Breadcrumb
         className="mt-28 mb-6"
         items={[
@@ -159,6 +160,7 @@ const ProductDetails = ({ params }) => {
         <AllProduct/>
       </div>
     </div>
+   </PrivateRoute>
   );
 };
 

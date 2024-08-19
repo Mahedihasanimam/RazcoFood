@@ -6,49 +6,57 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
-
 const Register = () => {
   const [form] = Form.useForm();
-  const router=useRouter()
-  const onFinish = async(values) => {
-    // console.log(values);
+  const router = useRouter();
+
+  const onFinish = async (values) => {
     try {
-      const response =await fetch('http://192.168.10.185:5000/api/v1/user/create-user',{
-        method:'POST',
-        headers:{
-          'Content-Type': 'application/json',
-        },
-        body:JSON.stringify(values)
-      })
-      console.log(response);
-      const data = await response.json();
-      if (response.ok) {
-        router.push(`/verify?email=${encodeURIComponent(values.email)}`)
+      
+      // Make POST request with the values directly
+      const response = await axios.post('http://192.168.10.185:5000/api/v1/user/create-user', values);
+      
+      // Handle response
+      if (response.status === 200) {
+        router.push(`/verify?email=${encodeURIComponent(values.email)}`);
         message.success('Registration successful!');
         form.resetFields();
       } else {
-        message.error(`Registration failed: ${data.message}`);
+        message.error(`Registration failed: ${response.data.message}`);
       }
-
     } catch (error) {
-      console.error('Error:', error);
-      message.error('An unexpected error occurred.');
+      if (error.response) {
+        // Handle known error
+        console.error('Error response:', error.response.data);
+        message.error(`Registration failed: ${error.response.data.message}`);
+      } else if (error.request) {
+        // Handle no response error
+        console.error('Error request:', error.request);
+        message.error('No response received from the server.');
+      } else {
+        // Handle unexpected errors
+        console.error('Error message:', error.message);
+        message.error('An unexpected error occurred.');
+      }
     }
-    form.resetFields(); 
+    form.resetFields();
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
   return (
-    <div className=" flex flex-col items-center justify-center my-28 ">
-      <div className="border px-12 mx-2 rounded-md text-[#6A6D7C] min-w-96 max-w-4xl ">
-       <div className='text-[#6A6D7C] text-center my-12'>
-       <Typography.Title style={{color:'[#6A6D7C]'}} className="font-bold text-4xl "><spanc className='text-[#6A6D7C]' >Register a new account</spanc></Typography.Title>
-       <p className='text-[#6A6D7C]'>Please enter your information to create account</p>
-       </div>
+    <div className="flex flex-col items-center justify-center my-28">
+      <div className="border px-12 mx-2 rounded-md text-[#6A6D7C] min-w-96 max-w-4xl">
+        <div className='text-[#6A6D7C] text-center my-12'>
+          <Typography.Title style={{ color: '#6A6D7C' }} className="font-bold text-4xl">
+            <span className='text-[#6A6D7C]'>Register a new account</span>
+          </Typography.Title>
+          <p className='text-[#6A6D7C]'>Please enter your information to create an account</p>
+        </div>
         <Form
-          form={form} 
+          form={form}
           name="basic"
           layout="vertical"
           initialValues={{
@@ -59,7 +67,7 @@ const Register = () => {
           autoComplete="off"
         >
           <Form.Item
-            label={<span className='text-[#6A6D7C] font-bold ' >Username</span>}
+            label={<span className='text-[#6A6D7C] font-bold'>Username</span>}
             name="name"
             rules={[
               {
@@ -68,10 +76,10 @@ const Register = () => {
               },
             ]}
           >
-            <Input  className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="your username" style={{ width: '100%' }} />
+            <Input className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="your username" style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item
-            label={<span className='text-[#6A6D7C] font-bold ' >Email Address</span>}
+            label={<span className='text-[#6A6D7C] font-bold'>Email Address</span>}
             name="email"
             rules={[
               {
@@ -80,10 +88,10 @@ const Register = () => {
               },
             ]}
           >
-            <Input  className='bg-[#F1F4F9] rounded-md p-3  border-none' placeholder="esteban_schiller@gmail.com" style={{ width: '100%' }} />
+            <Input className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="esteban_schiller@gmail.com" style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item
-            label={<span className='text-[#6A6D7C] font-bold ' >Contact no</span>}
+            label={<span className='text-[#6A6D7C] font-bold'>Contact no</span>}
             name="phone"
             rules={[
               {
@@ -92,39 +100,31 @@ const Register = () => {
               },
             ]}
           >
-            <Input   className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="+88018" style={{ width: '100%' }} />
+            <Input className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="+88018" style={{ width: '100%' }} />
           </Form.Item>
-
           <Form.Item
-         
-             label={<span className='text-[#6A6D7C] font-bold' >Password</span>}
+            label={<span className='text-[#6A6D7C] font-bold'>Password</span>}
             name="password"
             rules={[
               {
                 required: true,
                 message: 'Please input your password!',
-                whitespacespace: true,
               },
             ]}
           >
-            <Input.Password  className='bg-[#F1F4F9] rounded-md p-3 border-none'  placeholder="********" style={{ width: '100%' }} />
+            <Input.Password className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="********" style={{ width: '100%' }} />
           </Form.Item>
-
-          <div className=''>
-          <Form.Item name="remember"  valuePropName="checked">
-            <Checkbox name="remember" className="text-[#6A6D7C]  text-lg">Remember me</Checkbox>
+          <Form.Item name="remember">
+            <Checkbox className="text-[#6A6D7C] text-lg">Remember me</Checkbox>
           </Form.Item>
-      
-          </div>
-
           <Form.Item>
             <Button className='bg-[#7CC84E] text-white' size='large' htmlType="submit" style={{ width: '100%' }}>
-             Sign Up
+              Sign Up
             </Button>
           </Form.Item>
           <Link href={'/login'}>
             <Button className='my-4 block mx-auto'>Sign In</Button>
-            </Link>
+          </Link>
         </Form>
       </div>
     </div>

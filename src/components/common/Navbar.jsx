@@ -12,6 +12,7 @@ import React, { useState } from "react";
 // import '../app/style.css';
 import Link from "next/link";
 import TopNav from "./TopNav";
+import PrivateRoute from "@/app/Private/PrivateRoute";
 
 const items = [
   {
@@ -25,7 +26,9 @@ const items = [
   {
     label: (
       <label className="text-[#555656]">
-        <Link href={"/shop"}>Shop</Link>
+       <PrivateRoute>
+         <Link href={"/shop"}>Shop</Link>
+       </PrivateRoute>
       </label>
     ),
     key: "shop",
