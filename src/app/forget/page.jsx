@@ -1,15 +1,30 @@
 'use client';
 
 import React from 'react';
-import { Button, Checkbox, Form, Input, Typography, message } from 'antd';
+import { Button, Checkbox, Form, Input, message, Typography } from 'antd';
 import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [form] = Form.useForm();
-  
-  const onFinish = (values) => {
-    console.log(values);
-    message.success('Success');
+  const router=useRouter()
+  const onFinish = async(values) => {
+   const email=values.email
+    try {
+      const response=await axios.post('http://192.168.10.185:5000/api/v1/auth/forget-password',{
+        email
+      })
+
+      console.log('response data',response.data.statusCode==200 && response.data?.success);
+      if(response.data.statusCode==200 && response.data?.success){
+        router.push(`/otpverify?email=${encodeURIComponent(email)}`);
+        message.success(response.data.message)
+      }
+    } catch (error) {
+      console.log(error);
+      message.error(error.data.message);
+    }
     form.resetFields(); 
   };
 
@@ -35,15 +50,15 @@ const Login = () => {
         >
           <Form.Item
             label={<span className='text-[#6A6D7C] font-bold ' >Email Address</span>}
-            name="username"
+            name="email"
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: 'Please input your Email!',
               },
             ]}
           >
-            <Input  className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="esteban_schiller@gmail.com" style={{ width: '100%' }} />
+            <Input type='email'  className='bg-[#F1F4F9] rounded-md p-3 border-none' placeholder="esteban_schiller@gmail.com" style={{ width: '100%' }} />
           </Form.Item>
 
           <Form.Item>
