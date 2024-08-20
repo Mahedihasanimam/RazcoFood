@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useGetProductByNameQuery } from '@/service/postApi';
 import SingleCard from '@/components/product/SingleCard';
 import { Pagination } from 'antd';
+import PrivateRoute from '../Private/PrivateRoute';
 
 const ProductsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +21,8 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className='my-24 container mx-auto'>
+  <PrivateRoute>
+      <div className='my-24 container mx-auto'>
       <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6'>
         {products?.data.map(product => (
           <SingleCard key={product._id} product={product} />
@@ -36,6 +38,7 @@ const ProductsPage = () => {
         />
       </div>
     </div>
+  </PrivateRoute>
   );
 };
 

@@ -27,7 +27,6 @@ const Login = () => {
     }
     form.resetFields(); 
   };
-
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
