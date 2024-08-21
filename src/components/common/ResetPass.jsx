@@ -6,37 +6,39 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const ResetPass= () => {
+const ResetPass = () => {
   const [form] = Form.useForm();
   const router = useRouter();
+
   const onFinish = async (values) => {
+    console.log(values);
     try {
       const response = await axios.post(
-        "http://192.168.10.185:5000/api/v1/auth/login",
+        "http://192.168.10.185:5000/api/v1/auth/reset-password",
         {
-          email: values.username,
-          password: values.password,
+          newPassword: values.newPassword,
+          confirmPassword: values.confirmPassword,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+            "Content-Type": "application/json", 
+          },
         }
       );
-      const {
-        statusCode,
-        success,
-        message: sucessMessage,
-        data,
-      } = response.data;
+      const { statusCode, success, message: successMessage, data } = response.data;
 
       if (success && statusCode === 200) {
-        localStorage.setItem("token", data);
         console.log(data);
 
         router.push("/");
-        message.success(sucessMessage);
+        message.success(successMessage);
         form.resetFields();
       }
     } catch (error) {
       // Handle error response
-      console.error("Login failed:", error);
-      message.error("Login failed, please try again");
+      console.error("Password reset failed:", error?.response?.data || error);
+      message.error("Reset, please try again");
     }
   };
 
@@ -53,10 +55,10 @@ const ResetPass= () => {
             style={{ color: "#6A6D7C" }}
             className="font-bold text-4xl"
           >
-            <span className="text-[#6A6D7C]">Login to Account</span>
+            <span className="text-[#6A6D7C]">Reset Password</span>
           </Typography.Title>
           <p className="text-[#6A6D7C]">
-            Please enter your email and password to continue
+            Please enter your new password to continue
           </p>
         </div>
         <Form
@@ -68,32 +70,41 @@ const ResetPass= () => {
           autoComplete="off"
         >
           <Form.Item
-            label={
-              <span className="text-[#6A6D7C] font-bold">Email Address</span>
-            }
-            name="username"
+            label={<span className="text-[#6A6D7C] font-bold">New Password</span>}
+            name="newPassword"
             rules={[
               {
                 required: true,
-                message: "Please input your email!",
+                message: "Please input your new password!",
               },
+              
             ]}
           >
-            <Input
+            <Input.Password
               className="bg-[#F1F4F9] rounded-md p-2"
-              placeholder="esteban_schiller@gmail.com"
+              placeholder="********"
               style={{ width: "100%" }}
             />
           </Form.Item>
-
           <Form.Item
-            label={<span className="text-[#6A6D7C] font-bold">Password</span>}
-            name="password"
+            label={<span className="text-[#6A6D7C] font-bold">Confirm Password</span>}
+            name="confirmPassword"
+            dependencies={['newPassword']}
             rules={[
               {
                 required: true,
-                message: "Please input your password!",
+                message: "Please confirm your new password!",
               },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('newPassword') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error('The two passwords do not match!')
+                  );
+                },
+              }),
             ]}
           >
             <Input.Password
@@ -103,17 +114,6 @@ const ResetPass= () => {
             />
           </Form.Item>
 
-          <div className="flex items-center justify-between">
-            <Form.Item name="remember">
-              <Checkbox className="text-[#6A6D7C] text-lg">
-                Remember me
-              </Checkbox>
-            </Form.Item>
-            <Link className="text-[#6A6D7C] text-md mb-6" href={"/forget"}>
-              Forget Password?
-            </Link>
-          </div>
-
           <Form.Item>
             <Button
               className="bg-[#7CC84E] text-white"
@@ -121,7 +121,7 @@ const ResetPass= () => {
               htmlType="submit"
               style={{ width: "100%" }}
             >
-             Update Password
+              Update Password
             </Button>
           </Form.Item>
         </Form>
@@ -130,4 +130,4 @@ const ResetPass= () => {
   );
 };
 
-export default ResetPass
+export default ResetPass;

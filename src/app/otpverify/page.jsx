@@ -25,7 +25,7 @@ const OtpVerify = () => {
     console.log("OTP as a number:", requestBody);
 
     const response = await fetch(
-      "http://192.168.10.185:5000/api/v1/user/verify-email",
+      "http://192.168.10.185:5000/api/v1/auth/otp-verify",
       {
         method: "POST",
         headers: {
